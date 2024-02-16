@@ -65,6 +65,8 @@ class MoodTest {
         assertEquals(new Color(255, 102, 102), testMood.getMoodColor());
         testMood.setMood("sad", "Negative");
         assertEquals(new Color(255, 0, 0), testMood.getMoodColor());
+        testMood.setMood("sad", "Nothing");
+        assertEquals(new Color(211, 211, 211), testMood.getMoodColor());
     }
 
 }

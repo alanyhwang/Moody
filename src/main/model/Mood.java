@@ -11,6 +11,7 @@ public class Mood {
     private static final Color neutralColor = new Color(255, 255, 255);
     private static final Color negativeNeutralColor = new Color(255, 102, 102);
     private static final Color negativeColor = new Color(255, 0, 0);
+    private static final Color defaultColor = new Color(211, 211, 211);
 
     private int entryID;
     private LocalDate date;          // date of entry
@@ -94,6 +95,8 @@ public class Mood {
             case "Negative Neutral":
                 this.color = negativeNeutralColor;
                 break;
+            default:
+                this.color = defaultColor;
         }
     }
 
