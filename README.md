@@ -25,4 +25,4 @@ events can affect their mood in the long run.
 - As a user, I want to be able to select an entry from my mood tracker list and view the notes in detail
 - As a user, I want to be able to edit an entry from my mood tracker list, for example, editing the date, mood tag, or notes)
 - As a user, I want to be able to delete an entry from my mood tracker list
-- As a user, I want to be able to filter entries from a certain date range from my mood tracker list
+- As a user, I want to be able to filter entries by their moodTags from my mood tracker list
