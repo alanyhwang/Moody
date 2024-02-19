@@ -21,7 +21,7 @@ public class Mood {
     private String ansiColor;    // ansi color associated to moodTag
     private String note;        // additional notes for said entry
 
-    // REQUIRES: valid date entry, mood and moodTag has non-zero length
+    // REQUIRES: valid date entry
     // EFFECTS: initializes the mood entry with given inputs; moodTag determines color for this entry
     public Mood(int id, LocalDate date, String mood, String moodTag, String note) {
         this.date = date;
@@ -128,7 +128,7 @@ public class Mood {
                 this.ansiColor = "\u001b[35m";
                 break;
             default:
-                this.ansiColor = "\u001b[34m";
+                this.ansiColor = "\u001b[37m";
         }
     }
 

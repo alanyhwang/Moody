@@ -81,6 +81,6 @@ class MoodTest {
         testMood.setMood("sad", "Negative");
         assertEquals("\u001b[31m", testMood.getAnsiColor());
         testMood.setMood("none", "Nothing");
-        assertEquals("\u001b[34m", testMood.getAnsiColor());
+        assertEquals("\u001b[37m", testMood.getAnsiColor());
     }
 }
