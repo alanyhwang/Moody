@@ -28,8 +28,7 @@ public class MoodList {
         this.moodID += 1;
     }
 
-    //REQUIRES: moodID exists in the list
-    //EFFECTS: find the mood in moodList given moodID, else return null
+    //EFFECTS: return the mood in moodList given moodID, else return null
     public Mood findMood(int n) {
         for (Mood m : moodList) {
             if (m.getID() == n) {
@@ -46,7 +45,6 @@ public class MoodList {
         moodList.remove(findMood(moodID));
     }
 
-    //REQUIRES: a non-empty moodList
     //EFFECTS: produce a list of entries with given moodTag
     public ArrayList<Mood> filterMoodByTag(String moodTag) {
         ArrayList<Mood> moodListWithTag = new ArrayList<>();

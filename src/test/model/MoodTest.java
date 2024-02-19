@@ -57,7 +57,7 @@ class MoodTest {
     @Test
     public void testMoodColors() {
         assertEquals(new Color(0, 204, 0), testMood.getMoodColor());
-        testMood.setMood("Sad", "Positive Neutral");
+        testMood.setMood("Aight", "Positive Neutral");
         assertEquals(new Color(102, 255, 102), testMood.getMoodColor());
         testMood.setMood("OK", "Neutral");
         assertEquals(new Color(255, 255, 255), testMood.getMoodColor());
@@ -65,8 +65,22 @@ class MoodTest {
         assertEquals(new Color(255, 102, 102), testMood.getMoodColor());
         testMood.setMood("sad", "Negative");
         assertEquals(new Color(255, 0, 0), testMood.getMoodColor());
-        testMood.setMood("sad", "Nothing");
+        testMood.setMood("none", "Nothing");
         assertEquals(new Color(211, 211, 211), testMood.getMoodColor());
     }
 
+    @Test
+    public void testMoodAnsiColors() {
+        assertEquals("\u001b[36m", testMood.getAnsiColor());
+        testMood.setMood("Aight", "Positive Neutral");
+        assertEquals("\u001b[32m", testMood.getAnsiColor());
+        testMood.setMood("OK", "Neutral");
+        assertEquals("\u001b[0m", testMood.getAnsiColor());
+        testMood.setMood("down", "Negative Neutral");
+        assertEquals("\u001b[35m", testMood.getAnsiColor());
+        testMood.setMood("sad", "Negative");
+        assertEquals("\u001b[31m", testMood.getAnsiColor());
+        testMood.setMood("none", "Nothing");
+        assertEquals("\u001b[34m", testMood.getAnsiColor());
+    }
 }

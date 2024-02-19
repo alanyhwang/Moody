@@ -13,11 +13,12 @@ public class Mood {
     private static final Color negativeColor = new Color(255, 0, 0);
     private static final Color defaultColor = new Color(211, 211, 211);
 
-    private int entryID;
-    private LocalDate date;          // date of entry
+    private final int entryID;
+    private LocalDate date;     // date of entry
     private String mood;        // mood of said entry
     private String moodTag;     // tag associated to mood
     private Color color;        // color associated to moodTag
+    private String ansiColor;    // ansi color associated to moodTag
     private String note;        // additional notes for said entry
 
     // REQUIRES: valid date entry, mood and moodTag has non-zero length
@@ -29,6 +30,7 @@ public class Mood {
         this.note = note;
         this.entryID = id;
         setColor(moodTag);
+        setAnsiColor(moodTag);
     }
 
     public LocalDate getDate() {
@@ -47,6 +49,10 @@ public class Mood {
         return this.color;
     }
 
+    public String getAnsiColor() {
+        return this.ansiColor;
+    }
+
     public String getNote() {
         return this.note;
     }
@@ -63,6 +69,7 @@ public class Mood {
         this.mood = mood;
         this.moodTag = moodTag;
         setColor(moodTag);
+        setAnsiColor(moodTag);
     }
 
     public void setNote(String note) {
@@ -100,5 +107,29 @@ public class Mood {
         }
     }
 
+    //REQUIRES: string to be "Positive", "Positive Neutral", "Neutral", "Negative", "Negative Neutral"
+    //MODIFIES: this
+    //EFFECTS: set mood ansi color according to moodTag
+    private void setAnsiColor(String moodTag) {
+        switch (moodTag) {
+            case "Positive":
+                this.ansiColor = "\u001b[36m";
+                break;
+            case "Positive Neutral":
+                this.ansiColor = "\u001b[32m";
+                break;
+            case "Neutral":
+                this.ansiColor = "\u001b[0m";
+                break;
+            case "Negative":
+                this.ansiColor = "\u001b[31m";
+                break;
+            case "Negative Neutral":
+                this.ansiColor = "\u001b[35m";
+                break;
+            default:
+                this.ansiColor = "\u001b[34m";
+        }
+    }
 
 }
