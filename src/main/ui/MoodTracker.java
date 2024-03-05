@@ -2,15 +2,22 @@ package ui;
 
 import model.Mood;
 import model.MoodList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // MoodTracker Application
 public class MoodTracker {
+    private static final String JSON_LOCATION = "./data/moodlist.json";
     private Scanner input;
     private MoodList moodList;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the mood tracker app
     public MoodTracker() {
@@ -44,8 +51,39 @@ public class MoodTracker {
         System.out.println("Until next time.");
     }
 
+    //MODIFIES: this
+    //EFFECTS: initialize moodList and input
+    private void initializeTracker() {
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+        moodList = new MoodList();
+        jsonWriter = new JsonWriter(JSON_LOCATION);
+        jsonReader = new JsonReader(JSON_LOCATION);
+    }
+
+    //EFFECTS: welcome message after initial launch
+    private void welcomeMessage() {
+        System.out.println("\nWelcome to the Mood Tracker!");
+        System.out.println("\nWould you like to make an entry? (Y/N)");
+    }
+
+    //EFFECTS: print main menu for user
+    private void openMenu() {
+        System.out.println("Please select one of the following options:");
+        System.out.println("vl -> view list");
+        System.out.println("al -> add to list");
+        System.out.println("del -> delete from list");
+        System.out.println("vn -> view note");
+        System.out.println("en -> edit note");
+        System.out.println("fl -> filter list");
+        System.out.println("s -> save list");
+        System.out.println("l -> load list");
+        System.out.println("q -> quit");
+    }
+
     //EFFECTS: list of operations that are operated on moodList, only return false
     // when answer is q, true otherwise
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private boolean processAnswer(String answer) {
         switch (answer) {
             case "q": return false;
@@ -67,14 +105,20 @@ public class MoodTracker {
             case "fl":
                 filterList();
                 return true;
+            case "s":
+                saveList();
+                return true;
+            case "l":
+                loadList();
+                return true;
             default:
                 return true;
         }
     }
 
-    //REQUIRE: getLocalDate() is a valid LocalDate
-    //MODIFY: this, Mood
-    //EFFECTS: add new Mood entry to moodList
+    // REQUIRE: getLocalDate() is a valid LocalDate
+    // MODIFY: this, Mood
+    // EFFECTS: add new Mood entry to moodList
     private void addToList() {
         LocalDate date = getLocalDate();
         System.out.println("Please enter your mood:");
@@ -91,7 +135,7 @@ public class MoodTracker {
         enterToContinue();
     }
 
-    //EFFECTS: view the list of moods in moodList by their ID, Date, and mood; color set by corresponding moodTag
+    // EFFECTS: view the list of moods in moodList by their ID, Date, and mood; color set by corresponding moodTag
     private void viewList() {
         if (!(moodList.getMoodList().isEmpty())) {
             for (Mood m: moodList.getMoodList()) {
@@ -105,8 +149,8 @@ public class MoodTracker {
         enterToContinue();
     }
 
-    //MODIFY: this
-    //EFFECTS: deletes a mood from the moodList base on user input entryID
+    // MODIFY: this
+    // EFFECTS: deletes a mood from the moodList base on user input entryID
     private void deleteFromList() {
         System.out.println("Please enter the mood ID:");
         int id = Integer.parseInt(input.next());
@@ -119,8 +163,8 @@ public class MoodTracker {
         enterToContinue();
     }
 
-    //MODIFIES: this
-    //EFFECTS: view the note of a mood associated to a user input entryID
+    // MODIFIES: this
+    // EFFECTS: view the note of a mood associated to a user input entryID
     private void viewNote() {
         System.out.println("Please enter the mood ID:");
         int id = Integer.parseInt(input.next());
@@ -132,8 +176,8 @@ public class MoodTracker {
         enterToContinue();
     }
 
-    //MODIFIES: this
-    //EFFECTS: user choose entryID and what type of edits mood will be operated on
+    // MODIFIES: this
+    // EFFECTS: user choose entryID and what type of edits mood will be operated on
     private void editMood() {
         System.out.println("Please enter the mood ID:");
         int id = Integer.parseInt(input.next());
@@ -152,7 +196,7 @@ public class MoodTracker {
         enterToContinue();
     }
 
-    //EFFECTS: select which type of edits mood is worked on
+    // EFFECTS: select which type of edits mood is worked on
     private void processEditMoodAnswer(Mood mood, String answer) {
         switch (answer) {
             case "d":
@@ -172,9 +216,9 @@ public class MoodTracker {
         }
     }
 
-    //REQUIRES: getLocalDate() is a valid LocalDate
-    //MODIFIES: this, mood
-    //EFFECTS: replaces old Mood and all its parameters with new Mood with user inputs
+    // REQUIRES: getLocalDate() is a valid LocalDate
+    // MODIFIES: this, mood
+    // EFFECTS: replaces old Mood and all its parameters with new Mood with user inputs
     private void editMoodAll(Mood mood) {
         System.out.println("Re-editing mood...");
         mood.setDate(getLocalDate());
@@ -191,8 +235,8 @@ public class MoodTracker {
         System.out.println("ID " + mood.getID() + " is now fully updated.");
     }
 
-    //MODIFIES: this, mood
-    //EFFECTS: in input "replace", replaces old note with user input note; if input "add", adds the new note
+    // MODIFIES: this, mood
+    // EFFECTS: in input "replace", replaces old note with user input note; if input "add", adds the new note
     // on top of the old one
     private void editMoodNote(Mood mood) {
         System.out.println("Would you like to replace or add onto new note? Enter replace or add:");
@@ -211,8 +255,8 @@ public class MoodTracker {
         }
     }
 
-    //MODIFIES: this, mood
-    //EFFECTS: replaces old mood and moodTag with new ones input by user
+    // MODIFIES: this, mood
+    // EFFECTS: replaces old mood and moodTag with new ones input by user
     private void editMoodOfOldMood(Mood mood) {
         System.out.println("What is your new mood?");
         String newMood = input.next();
@@ -223,9 +267,9 @@ public class MoodTracker {
         System.out.println("Replaced old mood with " + newMood + " and " + newMoodTag + " as tag.");
     }
 
-    //REQUIRES: getLocalDate() is a valid LocalDate
-    //MODIFIES: mood
-    //EFFECTS: replaces old mood date with newly user defined LocalDate
+    // REQUIRES: getLocalDate() is a valid LocalDate
+    // MODIFIES: mood
+    // EFFECTS: replaces old mood date with newly user defined LocalDate
     private void editMoodDate(Mood mood) {
         System.out.println("Editing date...");
         LocalDate date = getLocalDate();
@@ -233,9 +277,9 @@ public class MoodTracker {
         System.out.println("The new date is: " + date);
     }
 
-    //REQUIRES: input.next() == ("Positive" || "Positive Neutral" || "Neutral" || "Negative Neutral" || "Negative")
-    //MODIFIES: this
-    //EFFECTS: makes a new filtered list within the method filtered by input methodTag by user
+    // REQUIRES: input.next() == ("Positive" || "Positive Neutral" || "Neutral" || "Negative Neutral" || "Negative")
+    // MODIFIES: this
+    // EFFECTS: makes a new filtered list within the method filtered by input methodTag by user
     private void filterList() {
         System.out.println("Which tag would you like to filter the list with?");
         System.out.println("Positive, Positive Neutral, Neutral, Negative Neutral, Negative");
@@ -253,29 +297,34 @@ public class MoodTracker {
         enterToContinue();
     }
 
-    //EFFECTS: print main menu for user
-    private void openMenu() {
-        System.out.println("Please select one of the following options:");
-        System.out.println("vl -> view list");
-        System.out.println("al -> add to list");
-        System.out.println("del -> delete from list");
-        System.out.println("vn -> view note");
-        System.out.println("en -> edit note");
-        System.out.println("fl -> filter list");
-        System.out.println("q -> quit");
+    // EFFECTS: saves all mood entries to file
+    private void saveList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(moodList);
+            jsonWriter.close();
+            System.out.println("Saved your mood entries to " + JSON_LOCATION);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_LOCATION);
+        }
+        enterToContinue();
     }
 
-    //MODIFIES: this
-    //EFFECTS: initialize moodList and input
-    private void initializeTracker() {
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-        moodList = new MoodList();
+    // MODIFIES: this
+    // EFFECTS: loads all mood entries from MoodList from file
+    private void loadList() {
+        try {
+            moodList = jsonReader.read();
+            System.out.println("Loaded previous save from " + JSON_LOCATION);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_LOCATION);
+        }
+        enterToContinue();
     }
 
-    //REQUIRES: valid year, month, day values for LocalDate
-    //MODIFIES: this
-    //EFFECTS: from user input year, month, day values, return a LocalDate
+    // REQUIRES: valid year, month, day values for LocalDate
+    // MODIFIES: this
+    // EFFECTS: from user input year, month, day values, return a LocalDate
     private LocalDate getLocalDate() {
         System.out.println("Please enter date of entry as year, month, date:");
         System.out.println("Year:");
@@ -287,13 +336,7 @@ public class MoodTracker {
         return LocalDate.of(year, month, day);
     }
 
-    //EFFECTS: welcome message after initial launch
-    private void welcomeMessage() {
-        System.out.println("\nWelcome to the Mood Tracker!");
-        System.out.println("\nWould you like to make an entry? (Y/N)");
-    }
-
-    //EFFECTS: press a key to continue program
+    // EFFECTS: press enter to continue program
     private void enterToContinue() {
         System.out.println("\nPress Enter to continue");
         input.next();

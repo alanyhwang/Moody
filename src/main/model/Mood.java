@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.awt.*;
 import java.time.LocalDate;
 
 // Represents a mood entry, including the date, mood, moodTag and note associated to said entry
-public class Mood {
+public class Mood implements Writable {
     // constants for colors associated to moodTag
     private static final Color positiveColor = new Color(0, 204, 0);
     private static final Color positiveNeutralColor = new Color(102, 255, 102);
@@ -18,17 +21,17 @@ public class Mood {
     private String mood;        // mood of said entry
     private String moodTag;     // tag associated to mood
     private Color color;        // color associated to moodTag
-    private String ansiColor;    // ansi color associated to moodTag
+    private String ansiColor;   // ansi color associated to moodTag
     private String note;        // additional notes for said entry
 
     // REQUIRES: valid date entry
     // EFFECTS: initializes the mood entry with given inputs; moodTag determines color for this entry
     public Mood(int id, LocalDate date, String mood, String moodTag, String note) {
+        this.entryID = id;
         this.date = date;
         this.mood = mood;
         this.moodTag = moodTag;
         this.note = note;
-        this.entryID = id;
         setColor(moodTag);
         setAnsiColor(moodTag);
     }
@@ -121,15 +124,25 @@ public class Mood {
             case "Neutral":
                 this.ansiColor = "\u001b[0m";
                 break;
-            case "Negative":
-                this.ansiColor = "\u001b[38;5;160m";
-                break;
             case "Negative Neutral":
                 this.ansiColor = "\u001b[38;5;9m";
+                break;
+            case "Negative":
+                this.ansiColor = "\u001b[38;5;160m";
                 break;
             default:
                 this.ansiColor = "\u001b[37m";
         }
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("entryID", entryID);
+        json.put("date", date);
+        json.put("mood", mood);
+        json.put("moodTag", moodTag);
+        json.put("note", note);
+        return json;
+    }
 }

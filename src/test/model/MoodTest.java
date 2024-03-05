@@ -71,15 +71,15 @@ class MoodTest {
 
     @Test
     public void testMoodAnsiColors() {
-        assertEquals("\u001b[36m", testMood.getAnsiColor());
+        assertEquals("\u001b[38;5;34m", testMood.getAnsiColor());
         testMood.setMood("Aight", "Positive Neutral");
-        assertEquals("\u001b[32m", testMood.getAnsiColor());
+        assertEquals("\u001b[38;5;10m", testMood.getAnsiColor());
         testMood.setMood("OK", "Neutral");
         assertEquals("\u001b[0m", testMood.getAnsiColor());
         testMood.setMood("down", "Negative Neutral");
-        assertEquals("\u001b[35m", testMood.getAnsiColor());
+        assertEquals("\u001b[38;5;9m", testMood.getAnsiColor());
         testMood.setMood("sad", "Negative");
-        assertEquals("\u001b[31m", testMood.getAnsiColor());
+        assertEquals("\u001b[38;5;160m", testMood.getAnsiColor());
         testMood.setMood("none", "Nothing");
         assertEquals("\u001b[37m", testMood.getAnsiColor());
     }

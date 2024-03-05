@@ -1,0 +1,47 @@
+{
+  "moodID": 8,
+  "mood list": [
+    {
+      "date": "1991-01-01",
+      "note": "VICTORY ROYALE YAY",
+      "mood": "Happy",
+      "entryID": 1,
+      "moodTag": "Positive"
+    },
+    {
+      "date": "1992-02-02",
+      "note": "playing games",
+      "mood": "Not Bad",
+      "entryID": 3,
+      "moodTag": "Positive Neutral"
+    },
+    {
+      "date": "1993-03-03",
+      "note": "sleeping in bed zzz",
+      "mood": "OK",
+      "entryID": 4,
+      "moodTag": "Neutral"
+    },
+    {
+      "date": "1994-04-04",
+      "note": "Imma go cry now",
+      "mood": "Sad",
+      "entryID": 5,
+      "moodTag": "Negative Neutral"
+    },
+    {
+      "date": "1995-05-05",
+      "note": "IM SUPER ANGRY.",
+      "mood": "Angry",
+      "entryID": 6,
+      "moodTag": "Negative"
+    },
+    {
+      "date": "1996-06-06",
+      "note": "fake note",
+      "mood": "huh",
+      "entryID": 7,
+      "moodTag": "default"
+    }
+  ]
+}
