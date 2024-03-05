@@ -82,7 +82,7 @@ public class Mood {
         this.note = this.note + " " + note;
     }
 
-    //REQUIRES: string to be "Positive", "Positive Neutral", "Neutral", "Negative", "Negative Neutral"
+    //REQUIRES: moodTag to be "Positive", "Positive Neutral", "Neutral", "Negative", "Negative Neutral"
     //MODIFIES: this
     //EFFECTS: set mood color according to moodTag
     private void setColor(String moodTag) {
@@ -107,25 +107,25 @@ public class Mood {
         }
     }
 
-    //REQUIRES: string to be "Positive", "Positive Neutral", "Neutral", "Negative", "Negative Neutral"
+    //REQUIRES: moodTag to be "Positive", "Positive Neutral", "Neutral", "Negative", "Negative Neutral"
     //MODIFIES: this
     //EFFECTS: set mood ansi color according to moodTag
     private void setAnsiColor(String moodTag) {
         switch (moodTag) {
             case "Positive":
-                this.ansiColor = "\u001b[36m";
+                this.ansiColor = "\u001b[38;5;34m";
                 break;
             case "Positive Neutral":
-                this.ansiColor = "\u001b[32m";
+                this.ansiColor = "\u001b[38;5;10m";
                 break;
             case "Neutral":
                 this.ansiColor = "\u001b[0m";
                 break;
             case "Negative":
-                this.ansiColor = "\u001b[31m";
+                this.ansiColor = "\u001b[38;5;160m";
                 break;
             case "Negative Neutral":
-                this.ansiColor = "\u001b[35m";
+                this.ansiColor = "\u001b[38;5;9m";
                 break;
             default:
                 this.ansiColor = "\u001b[37m";
