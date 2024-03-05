@@ -26,3 +26,5 @@ events can affect their mood in the long run.
 - As a user, I want to be able to edit an entry from my mood tracker list, for example, editing the date, mood tag, or notes)
 - As a user, I want to be able to delete an entry from my mood tracker list
 - As a user, I want to be able to filter entries by their moodTags from my mood tracker list
+- As a user, I want to be able to save my mood entries from the main menu to file
+- As a user, I want to be able to load my mood entries from the main menu from file
