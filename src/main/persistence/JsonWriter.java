@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 // Modelled from JsonSerializationDemo
 // Represents a writer that writes MoodList JSON to file
 public class JsonWriter {
-    private static final int indent = 4;
+    private static final int INDENT = 4;
     private PrintWriter writer;
     private String destination;
 
@@ -29,7 +29,7 @@ public class JsonWriter {
     // EFFECTS: writes MoodList in JSON to file
     public void write(MoodList ml) {
         JSONObject json = ml.toJson();
-        saveToFile(json.toString(indent));
+        saveToFile(json.toString(INDENT));
     }
 
     // MODIFIES: this
