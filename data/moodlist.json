@@ -1,5 +1,5 @@
 {
-    "moodID": 7,
+    "moodID": 9,
     "mood list": [
         {
             "date": "1990-01-02",
@@ -35,6 +35,20 @@
             "mood": "very angy",
             "entryID": 6,
             "moodTag": "Negative"
+        },
+        {
+            "date": "1996-06-06",
+            "note": "so happy ong",
+            "mood": "SUPER HAPPY",
+            "entryID": 7,
+            "moodTag": "Positive"
+        },
+        {
+            "date": "1998-12-23",
+            "note": "UGHHHHHHHHHHHHHHHHHHH MAN",
+            "mood": "UGH",
+            "entryID": 8,
+            "moodTag": "Negative Neutral"
         }
     ]
 }

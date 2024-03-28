@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // MoodTracker Application
-public class MoodTracker {
+public class MoodTrackerConsole {
     private static final String JSON_LOCATION = "./data/moodlist.json";
     private Scanner input;
     private MoodList moodList;
@@ -20,7 +20,7 @@ public class MoodTracker {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the mood tracker app
-    public MoodTracker() {
+    public MoodTrackerConsole() {
         runMoodTracker();
     }
 
