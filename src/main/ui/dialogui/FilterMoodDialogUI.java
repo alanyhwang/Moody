@@ -8,45 +8,52 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
+// creates JDialog to obtain desired moodTag to filter moodList
 public class FilterMoodDialogUI {
     private MoodTrackerUI moodTrackerUI;
     private JComboBox<String> moodTagComboBox;
     private String moodTag;
-    private Dialog dialog;
+    private JDialog dialog;
 
-    // Obtain desired MoodTag to filter from DialogUI
     public FilterMoodDialogUI(MoodTrackerUI moodTrackerUI) {
         this.moodTrackerUI = moodTrackerUI;
         moodTagComboBox = null;
         moodTag = null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: get selected moodTag from JComboBox UI
     public String getSelectedMoodTag() {
         moodTag = Objects.requireNonNull(moodTagComboBox.getSelectedItem()).toString();
         return moodTag;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates JDialog and components
     public void createDialogFilter() {
-        JDialog d = new JDialog(moodTrackerUI, "Filter Mood Entries", true);
-        dialog = d;
-        d.setLayout(new GridLayout(0, 1));
-        d.setMinimumSize(new Dimension(200, 150));
-        d.setLocation(250, 100);
-        setupTopDialog(d);
-        setupFilterButtons(d);
-        d.setVisible(true);
+        dialog = new JDialog(moodTrackerUI, "Filter Mood Entries", true);
+        dialog.setLayout(new GridLayout(0, 1));
+        dialog.setMinimumSize(new Dimension(200, 150));
+        dialog.setLocation(250, 100);
+        setupTopDialog();
+        setupFilterButtons();
+        dialog.setVisible(true);
     }
 
-    private void setupFilterButtons(JDialog d) {
+    // MODIFIES: this
+    // EFFECTS: adds buttons to bottom panel, and panel to JDialog
+    private void setupFilterButtons() {
         JPanel p2 = new JPanel();
         p2.setLayout(new FlowLayout(FlowLayout.CENTER));
         new FilterConfirmButton(moodTrackerUI, p2,this);
-        new FilterResetButton(moodTrackerUI, p2, d);
+        new FilterResetButton(moodTrackerUI, p2, dialog);
         p2.setVisible(true);
-        d.add(p2);
+        dialog.add(p2);
     }
 
-    private void setupTopDialog(JDialog d) {
+    // MODIFIES: this
+    // EFFECTS: adds text and JComboBox to top panel, and panel to JDialog
+    private void setupTopDialog() {
         JPanel p1 = new JPanel();
         p1.setLayout(new FlowLayout(FlowLayout.CENTER));
         JLabel moodTagLabel = new JLabel("MoodTag: ");
@@ -57,9 +64,11 @@ public class FilterMoodDialogUI {
         moodTagComboBox = moodTagCB;
         p1.add(moodTagCB);
         p1.setVisible(true);
-        d.add(p1);
+        dialog.add(p1);
     }
 
+    // MODIFIES: this
+    // EFFECTS: exit JDialog
     public void disposeDialog() {
         dialog.dispose();
     }

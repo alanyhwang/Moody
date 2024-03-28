@@ -10,6 +10,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+// creates JDialog to edit mood
 public class EditMoodDialogUI extends AddMoodDialogUI {
     private Mood moodObject;
 
@@ -26,8 +27,10 @@ public class EditMoodDialogUI extends AddMoodDialogUI {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: creates new JDialog with empty fields
     protected void makeJDialog() {
-        JDialog d = initializeDialog();
+        initializeDialog();
         JPanel centerPanel = initializeCenterPanel();
         JPanel centerTopPanel = initializeCenterPanel();
         JPanel centerBotPanel = initializeCenterPanel();
@@ -37,21 +40,25 @@ public class EditMoodDialogUI extends AddMoodDialogUI {
         addMoodPanel(centerTopPanel);
         addMoodTagPanel(centerTopPanel);
         addNotePanel(centerBotPanel);
-        addDialogButtons(d);
-        d.add(centerPanel);
+        addDialogButtons();
+        dialog.add(centerPanel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add buttons to JDialog
     @Override
-    protected void addDialogButtons(JDialog d) {
+    protected void addDialogButtons() {
         JPanel p5 = new JPanel();
         p5.setLayout(new FlowLayout(FlowLayout.CENTER));
         new EditConfirmButton(moodTrackerUI, p5, this);
         new EditCancelButton(moodTrackerUI, p5, this);
-        if (d != null) {
-            d.add(p5, BorderLayout.SOUTH);
+        if (dialog != null) {
+            dialog.add(p5, BorderLayout.SOUTH);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: fill all JComponents with currently selected mood
     private void fillInFields() {
         noteTextArea.setText(note);
         moodTagComboBox.setSelectedIndex(Arrays.asList(moodTagChoices).indexOf(moodTag));
@@ -61,6 +68,8 @@ public class EditMoodDialogUI extends AddMoodDialogUI {
         dayTextField.setText(String.valueOf(date.getDayOfMonth()));
     }
 
+    // MODIFIES: this
+    // EFFECTS: update current mood with components in current JDialog
     public void updateMood() {
         moodObject.setMood(moodTextField.getText(), moodTagComboBox.getSelectedItem().toString());
         moodObject.setNote(noteTextArea.getText());

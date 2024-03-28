@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Closes dialog
 public class DialogOkButton extends Button {
     private JDialog jdialog;
 
@@ -15,6 +16,8 @@ public class DialogOkButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -28,6 +31,8 @@ public class DialogOkButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("OK");
     }

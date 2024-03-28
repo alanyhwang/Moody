@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Button cancels effects of add button
 public class AddCancelButton extends Button {
     private AddMoodDialogUI addMoodDialogUI;
 
@@ -16,6 +17,8 @@ public class AddCancelButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -29,6 +32,8 @@ public class AddCancelButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("Cancel");
     }

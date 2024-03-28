@@ -83,8 +83,7 @@ public class MoodTrackerConsole {
         System.out.println("q -> quit");
     }
 
-    //EFFECTS: list of operations that are operated on moodList, only return false
-    // when answer is q, true otherwise
+    //EFFECTS: list of operations that are operated on moodList
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void processAnswer(String answer) {
         switch (answer) {

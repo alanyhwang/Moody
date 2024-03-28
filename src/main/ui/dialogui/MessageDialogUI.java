@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
+// creates JDialog to show message
 public class MessageDialogUI {
     private MoodTrackerUI moodTrackerUI;
     private String name;
@@ -22,6 +23,8 @@ public class MessageDialogUI {
         makeJDialog();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates JDialog to display message
     private void makeJDialog() {
         jdialog = initializeDialog();
         JLabel topText = new JLabel(message);
@@ -35,6 +38,7 @@ public class MessageDialogUI {
         jdialog.setVisible(true);
     }
 
+    // EFFECTS: get ImageIcon from file
     private ImageIcon getImageIcon() {
         URL imageURL;
         if (happyCat) {
@@ -48,6 +52,7 @@ public class MessageDialogUI {
         return new ImageIcon(imageURL);
     }
 
+    // EFFECTS: sets parameters for JDialog
     private JDialog initializeDialog() {
         JDialog d = new JDialog(moodTrackerUI, name, true);
         d.setLayout(new BorderLayout());

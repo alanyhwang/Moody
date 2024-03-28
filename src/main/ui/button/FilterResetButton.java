@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Button resets displayed moodList
 public class FilterResetButton extends Button {
     JDialog jdialog;
 
@@ -15,6 +16,8 @@ public class FilterResetButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -29,6 +32,8 @@ public class FilterResetButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("Reset");
     }

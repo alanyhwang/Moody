@@ -16,6 +16,8 @@ public class AddButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -29,6 +31,8 @@ public class AddButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("Add");
     }

@@ -31,13 +31,14 @@ public class AddMoodDialogUI {
     protected JTextField monthTextField;
     protected JTextField dayTextField;
 
-
     public AddMoodDialogUI(MoodTrackerUI moodTrackerUI) {
         this.moodTrackerUI = moodTrackerUI;
         resetMoodParameters();
         makeJDialog();
     }
 
+    // MODIFIES: this
+    // EFFECTS: reset mood parameters
     private void resetMoodParameters() {
         moodID = 0;
         date = null;
@@ -46,8 +47,10 @@ public class AddMoodDialogUI {
         note = null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates new JDialog to add mood
     protected void makeJDialog() {
-        JDialog d = initializeDialog();
+        initializeDialog();
         JPanel centerPanel = initializeCenterPanel();
         JPanel centerTopPanel = initializeCenterPanel();
         JPanel centerBotPanel = initializeCenterPanel();
@@ -57,27 +60,32 @@ public class AddMoodDialogUI {
         addMoodPanel(centerTopPanel);
         addMoodTagPanel(centerTopPanel);
         addNotePanel(centerBotPanel);
-        addDialogButtons(d);
-        d.add(centerPanel);
-        d.setVisible(true);
+        addDialogButtons();
+        dialog.add(centerPanel);
+        dialog.setVisible(true);
     }
 
+    // EFFECTS: initialize panel
     protected JPanel initializeCenterPanel() {
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(0, 1, 0, 0));
         return centerPanel;
     }
 
-    protected void addDialogButtons(JDialog d) {
+    // MODIFIES: this
+    // EFFECTS: add buttons to panel, add panel to dialog
+    protected void addDialogButtons() {
         JPanel p5 = new JPanel();
         p5.setLayout(new FlowLayout(FlowLayout.CENTER));
         new AddDoneButton(moodTrackerUI, p5, this);
         new AddCancelButton(moodTrackerUI, p5, this);
-        if (d != null) {
-            d.add(p5, BorderLayout.SOUTH);
+        if (dialog != null) {
+            dialog.add(p5, BorderLayout.SOUTH);
         }
     }
 
+    // MODIFIES: this, p
+    // EFFECTS: add note text area to panel
     protected void addNotePanel(JPanel p) {
         JPanel p4 = new JPanel();
         p4.setLayout(new GridLayout(0, 1));
@@ -91,6 +99,8 @@ public class AddMoodDialogUI {
         p.add(p4);
     }
 
+    // MODIFIES: this, p
+    // EFFECTS: add moodTag text box to panel
     protected void addMoodTagPanel(JPanel p) {
         JPanel p3 = new JPanel();
         p3.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -103,6 +113,8 @@ public class AddMoodDialogUI {
         p.add(p3);
     }
 
+    // MODIFIES: this, p
+    // EFFECTS: add mood text box to panel
     protected void addMoodPanel(JPanel p) {
         JPanel p2 = new JPanel();
         p2.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -115,6 +127,8 @@ public class AddMoodDialogUI {
         p.add(p2);
     }
 
+    // MODIFIES: this, p
+    // EFFECTS: add date text box to panel
     protected void addDatePanel(JPanel p) {
         JPanel p1 = new JPanel();
         p1.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -131,19 +145,22 @@ public class AddMoodDialogUI {
         p.add(p1);
     }
 
-    protected JDialog initializeDialog() {
+    // MODIFIES: this
+    // EFFECTS: set dialog parameters
+    protected void initializeDialog() {
         this.dialog = new JDialog(moodTrackerUI, "New Mood Entry", true);
         dialog.setLayout(new BorderLayout());
         dialog.setMinimumSize(new Dimension(250, 300));
         dialog.setLocation(500, 0);
-        return dialog;
     }
 
+    // EFFECTS: reset parameters and close dialog
     public void cancelDialog() {
         resetMoodParameters();
         disposeDialog();
     }
 
+    // EFFECTS: create new mood with new mood constructors
     public Mood constructNewMood() {
         Mood m = null;
         convertJComponentsToMoodConstructors();
@@ -153,6 +170,8 @@ public class AddMoodDialogUI {
         return m;
     }
 
+    // MODIFIES: this
+    // EFFECTS: convert JComponent fields to this
     private void convertJComponentsToMoodConstructors() {
         try {
             String yearText = getYearText();
@@ -172,10 +191,12 @@ public class AddMoodDialogUI {
         }
     }
 
+    // EFFECTS: close dialog
     public void disposeDialog() {
         dialog.dispose();
     }
 
+    // EFFECTS: convert text field year to string
     protected String getYearText() {
         String yearFromText = yearTextField.getText();
         if (yearFromText.length() == 1) {
@@ -193,6 +214,7 @@ public class AddMoodDialogUI {
         return yearFromText;
     }
 
+    // EFFECTS: convert text field day to string
     protected String getDayText() {
         if (dayTextField.getText().length() == 1) {
             String dayText = "0" + dayTextField.getText();
@@ -201,6 +223,7 @@ public class AddMoodDialogUI {
         return dayTextField.getText();
     }
 
+    // EFFECTS: convert text field month to string
     protected String getMonthText() {
         if (monthTextField.getText().length() == 1) {
             String monthText = "0" + monthTextField.getText();

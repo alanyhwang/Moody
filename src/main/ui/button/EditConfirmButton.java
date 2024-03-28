@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Button confirms editing to selected mood
 public class EditConfirmButton extends Button {
 
     private EditMoodDialogUI editMoodDialogUI;
@@ -18,6 +19,8 @@ public class EditConfirmButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -39,6 +42,8 @@ public class EditConfirmButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("Confirm");
     }

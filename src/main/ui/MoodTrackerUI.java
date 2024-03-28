@@ -129,6 +129,8 @@ public class MoodTrackerUI extends JFrame {
         return js;
     }
 
+    // MODIFIES: this
+    // EFFECTS: create JTable from moodList, return JTable
     private JTable setMoodListTable() {
         ArrayList<Mood> moods = moodList.getMoodList();
         DefaultTableModel moodTable = new DefaultTableModel(columnNames, 0);
@@ -165,10 +167,13 @@ public class MoodTrackerUI extends JFrame {
         new LoadButton(this, buttonArea);
     }
 
+    // EFFECTS: create a new JDialog for adding a new mood
     public void addNewMood() {
         new AddMoodDialogUI(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes selected mood from moodList and table UI
     public void removeMood() {
         if (editableJTableMoodList.getSelectedRow() > -1) {
             int rowToDelete = editableJTableMoodList.getSelectedRow();
@@ -178,11 +183,13 @@ public class MoodTrackerUI extends JFrame {
         }
     }
 
+    // EFFECTS: creates a new JDialog for selecting a filter
     public void filterMoods() {
         FilterMoodDialogUI filterMoodDialogUI = new FilterMoodDialogUI(this);
         filterMoodDialogUI.createDialogFilter();
     }
 
+    // EFFECTS: creates a new JDialog for editing a selected mood
     public void editMood() {
         int rowToEdit = editableJTableMoodList.getSelectedRow();
         if (rowToEdit > -1) {
@@ -192,9 +199,8 @@ public class MoodTrackerUI extends JFrame {
         }
     }
 
-    // TODO
     // MODIFIES: this
-    // EFFECTS: loads all mood entries from MoodList from file
+    // EFFECTS: loads all mood entries of MoodList from JSON file
     public void loadMoods() {
         try {
             moodList = jsonReader.read();
@@ -211,8 +217,8 @@ public class MoodTrackerUI extends JFrame {
         resetTableToMoodList();
     }
 
-    // TODO
-    // EFFECTS: saves all mood entries to file
+    // MODIFIES: this
+    // EFFECTS: saves all mood entries to JSON file
     public void saveMoods() {
         try {
             jsonWriter.open();
@@ -230,16 +236,22 @@ public class MoodTrackerUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: add mood to moodList, reflect change on JTable UI
     public void addNewMoodToMoodList(Mood m) {
         moodList.addMood(m);
         updateJTableUIAddMood(m);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds new mood to JTable
     private void updateJTableUIAddMood(Mood m) {
         String[] newMood = {String.valueOf(m.getID()), String.valueOf(m.getDate()), m.getMood()};
         editableTableMoodList.addRow(newMood);
     }
 
+    // MODIFIES: this
+    // EFFECTS: JTable UI shows items associated to moodTag
     public void updateFilteredMoodTable(String moodTag) {
         ArrayList<Mood> filteredMoodList = moodList.filterMoodByTag(moodTag);
         editableTableMoodList.setRowCount(0);
@@ -249,6 +261,8 @@ public class MoodTrackerUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: reset JTable UI to moodList, textArea to blank
     public void resetTableToMoodList() {
         editableTableMoodList.setRowCount(0);
         for (Mood m : moodList.getMoodList()) {

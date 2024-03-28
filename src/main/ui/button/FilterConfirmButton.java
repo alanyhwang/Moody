@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Button confirms filtering
 public class FilterConfirmButton extends Button {
     private FilterMoodDialogUI filterMoodDialogUI;
 
@@ -16,6 +17,8 @@ public class FilterConfirmButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -31,6 +34,8 @@ public class FilterConfirmButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("Confirm");
     }

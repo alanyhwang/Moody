@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Button finishes effects of add button
 public class AddDoneButton extends Button {
     private AddMoodDialogUI addMoodDialogUI;
 
@@ -17,6 +18,8 @@ public class AddDoneButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
@@ -34,6 +37,8 @@ public class AddDoneButton extends Button {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: set button name
     protected void createButton(JComponent parent) {
         button = new JButton("Done");
     }
