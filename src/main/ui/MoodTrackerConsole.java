@@ -44,8 +44,10 @@ public class MoodTrackerConsole {
             openMenu();
             answer = input.next();
             System.out.println("\n");
-            if (!processAnswer(answer)) {
+            if (answer.equals("q")) {
                 programOngoing = false;
+            } else {
+                processAnswer(answer);
             }
         }
         System.out.println("Until next time.");
@@ -84,35 +86,34 @@ public class MoodTrackerConsole {
     //EFFECTS: list of operations that are operated on moodList, only return false
     // when answer is q, true otherwise
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    private boolean processAnswer(String answer) {
+    private void processAnswer(String answer) {
         switch (answer) {
-            case "q": return false;
             case "vl":
                 viewList();
-                return true;
+                break;
             case "al":
                 addToList();
-                return true;
+                break;
             case "del":
                 deleteFromList();
-                return true;
+                break;
             case "vn":
                 viewNote();
-                return true;
+                break;
             case "en":
                 editMood();
-                return true;
+                break;
             case "fl":
                 filterList();
-                return true;
+                break;
             case "s":
                 saveList();
-                return true;
+                break;
             case "l":
                 loadList();
-                return true;
+                break;
             default:
-                return true;
+                break;
         }
     }
 

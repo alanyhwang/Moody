@@ -1,5 +1,5 @@
 {
-    "moodID": 15,
+    "moodID": 10,
     "mood list": [
         {
             "date": "1990-01-02",
@@ -44,32 +44,18 @@
             "moodTag": "Positive"
         },
         {
-            "date": "6666-06-06",
-            "note": "NOT SURE",
-            "mood": "kinda angry?",
-            "entryID": 11,
+            "date": "1998-12-23",
+            "note": "UGHHHHHHHHHHHHHHHHHHH MAN",
+            "mood": "UGH",
+            "entryID": 8,
             "moodTag": "Negative Neutral"
         },
         {
-            "date": "2000-02-20",
-            "note": "NOT SURE THO",
-            "mood": "KINDA HAPPY?",
-            "entryID": 12,
-            "moodTag": "Positive Neutral"
-        },
-        {
-            "date": "1920-01-01",
-            "note": "ZZZZzzz",
-            "mood": "SLEEPY",
-            "entryID": 13,
-            "moodTag": "Neutral"
-        },
-        {
-            "date": "1700-01-01",
-            "note": "am in grave ded",
-            "mood": "dead",
-            "entryID": 14,
-            "moodTag": "Negative"
+            "date": "0001-11-01",
+            "note": "crazy weather today. pooped",
+            "mood": "cray",
+            "entryID": 9,
+            "moodTag": "Positive"
         }
     ]
 }

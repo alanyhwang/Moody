@@ -36,21 +36,16 @@ public class MessageDialogUI {
     }
 
     private ImageIcon getImageIcon() {
+        URL imageURL;
         if (happyCat) {
-            URL imageURL = MessageDialogUI.class.getResource("/happycat.jpg");
-            if (imageURL == null) {
-                throw new RuntimeException("resource failed to load");
-            }
-            ImageIcon happyCat = new ImageIcon(imageURL);
-            return happyCat;
+            imageURL = MessageDialogUI.class.getResource("/happycat.jpg");
         } else {
-            URL imageURL = MessageDialogUI.class.getResource("/sadcat.JPG");
-            if (imageURL == null) {
-                throw new RuntimeException("resource failed to load");
-            }
-            ImageIcon sadCat = new ImageIcon(imageURL);
-            return sadCat;
+            imageURL = MessageDialogUI.class.getResource("/sadcat.JPG");
         }
+        if (imageURL == null) {
+            throw new RuntimeException("resource failed to load");
+        }
+        return new ImageIcon(imageURL);
     }
 
     private JDialog initializeDialog() {
