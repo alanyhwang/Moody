@@ -84,35 +84,23 @@ public class MoodTrackerConsole {
     }
 
     //EFFECTS: list of operations that are operated on moodList
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void processAnswer(String answer) {
-        switch (answer) {
-            case "vl":
-                viewList();
-                break;
-            case "al":
-                addToList();
-                break;
-            case "del":
-                deleteFromList();
-                break;
-            case "vn":
-                viewNote();
-                break;
-            case "en":
-                editMood();
-                break;
-            case "fl":
-                filterList();
-                break;
-            case "s":
-                saveList();
-                break;
-            case "l":
-                loadList();
-                break;
-            default:
-                break;
+        if (answer.equals("vl")) {
+            viewList();
+        } else if (answer.equals("al")) {
+            addToList();
+        } else if (answer.equals("del")) {
+            deleteFromList();
+        } else if (answer.equals("vn")) {
+            viewNote();
+        } else if (answer.equals("en")) {
+            editMood();
+        } else if (answer.equals("fl")) {
+            filterList();
+        } else if (answer.equals("s")) {
+            saveList();
+        } else if (answer.equals("l")) {
+            loadList();
         }
     }
 

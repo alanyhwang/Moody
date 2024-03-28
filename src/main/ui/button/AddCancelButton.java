@@ -5,7 +5,6 @@ import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // Button cancels effects of add button
 public class AddCancelButton extends Button {
@@ -20,13 +19,10 @@ public class AddCancelButton extends Button {
     // MODIFIES: this
     // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = e.getActionCommand();
-                if (s.equals("Cancel")) {
-                    addMoodDialogUI.cancelDialog();
-                }
+        button.addActionListener((ActionEvent e) -> {
+            String s = e.getActionCommand();
+            if (s.equals("Cancel")) {
+                addMoodDialogUI.cancelDialog();
             }
         });
     }

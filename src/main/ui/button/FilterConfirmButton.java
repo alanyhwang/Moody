@@ -5,7 +5,6 @@ import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // Button confirms filtering
 public class FilterConfirmButton extends Button {
@@ -20,15 +19,12 @@ public class FilterConfirmButton extends Button {
     // MODIFIES: this
     // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = e.getActionCommand();
-                if (s.equals("Confirm")) {
-                    String moodTag = filterMoodDialogUI.getSelectedMoodTag();
-                    moodTrackerUI.updateFilteredMoodTable(moodTag);
-                    filterMoodDialogUI.disposeDialog();
-                }
+        button.addActionListener((ActionEvent e) -> {
+            String s = e.getActionCommand();
+            if (s.equals("Confirm")) {
+                String moodTag = filterMoodDialogUI.getSelectedMoodTag();
+                moodTrackerUI.updateFilteredMoodTable(moodTag);
+                filterMoodDialogUI.disposeDialog();
             }
         });
     }

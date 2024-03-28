@@ -4,7 +4,6 @@ import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // Button adds new mood entry to moodList
 public class AddButton extends Button {
@@ -19,13 +18,10 @@ public class AddButton extends Button {
     // MODIFIES: this
     // EFFECTS: adds listener to button, sets up button function
     protected void addListener() {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = e.getActionCommand();
-                if (s.equals("Add")) {
-                    moodTrackerUI.addNewMood();
-                }
+        button.addActionListener((ActionEvent e) -> {
+            String s = e.getActionCommand();
+            if (s.equals("Add")) {
+                moodTrackerUI.addNewMood();
             }
         });
     }

@@ -12,7 +12,6 @@ import ui.dialogui.MessageDialogUI;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -87,21 +86,18 @@ public class MoodTrackerUI extends JFrame {
     // MODIFIES: this, textArea
     // EFFECTS: mouse click on a JTable row will set JTextArea's text to the associated mood
     private void selectionListener(JTable table, JTextArea textArea) {
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (table.getSelectedRow() > -1) {
-                    textArea.setText("");
-                    int rowMoodID = parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
-                    Mood m = moodList.findMood(rowMoodID);
-                    String id = "ID: " + m.getID() + "\n";
-                    String date = "Date: " + m.getDate() + "\n";
-                    String mood = "Mood: " + m.getMood() + "\n";
-                    String moodTag = "MoodTag: " + m.getMoodTag() + "\n";
-                    String note = "Note: " + "\n" + m.getNote();
-                    textArea.setText(id + date + mood + moodTag + note);
-                    textArea.setCaretPosition(0);
-                }
+        table.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+            if (table.getSelectedRow() > -1) {
+                textArea.setText("");
+                int rowMoodID = parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
+                Mood m = moodList.findMood(rowMoodID);
+                String id = "ID: " + m.getID() + "\n";
+                String date = "Date: " + m.getDate() + "\n";
+                String mood = "Mood: " + m.getMood() + "\n";
+                String moodTag = "MoodTag: " + m.getMoodTag() + "\n";
+                String note = "Note: " + "\n" + m.getNote();
+                textArea.setText(id + date + mood + moodTag + note);
+                textArea.setCaretPosition(0);
             }
         });
     }

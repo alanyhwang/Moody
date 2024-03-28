@@ -200,16 +200,13 @@ public class AddMoodDialogUI {
     protected String getYearText() {
         String yearFromText = yearTextField.getText();
         if (yearFromText.length() == 1) {
-            String yearText = "000" + yearFromText;
-            return yearText;
+            return "000" + yearFromText;
         }
         if (yearFromText.length() == 2) {
-            String yearText = "00" + yearFromText;
-            return yearText;
+            return "00" + yearFromText;
         }
         if (yearFromText.length() == 3) {
-            String yearText = "0" + yearFromText;
-            return yearText;
+            return "0" + yearFromText;
         }
         return yearFromText;
     }
@@ -217,8 +214,7 @@ public class AddMoodDialogUI {
     // EFFECTS: convert text field day to string
     protected String getDayText() {
         if (dayTextField.getText().length() == 1) {
-            String dayText = "0" + dayTextField.getText();
-            return dayText;
+            return "0" + dayTextField.getText();
         }
         return dayTextField.getText();
     }
@@ -226,8 +222,7 @@ public class AddMoodDialogUI {
     // EFFECTS: convert text field month to string
     protected String getMonthText() {
         if (monthTextField.getText().length() == 1) {
-            String monthText = "0" + monthTextField.getText();
-            return monthText;
+            return "0" + monthTextField.getText();
         }
         return monthTextField.getText();
     }
