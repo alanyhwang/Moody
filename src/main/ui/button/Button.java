@@ -1,4 +1,6 @@
-package ui;
+package ui.button;
+
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 

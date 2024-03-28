@@ -1,11 +1,14 @@
-package ui;
+package ui.button;
+
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SaveButton extends Button {
-    public SaveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
+public class RemoveButton extends Button {
+
+    public RemoveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }
 
@@ -15,8 +18,8 @@ public class SaveButton extends Button {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Save")) {
-                    moodTrackerUI.saveMoods();
+                if (s.equals("Remove")) {
+                    moodTrackerUI.removeMood();
                 }
             }
         });
@@ -24,6 +27,6 @@ public class SaveButton extends Button {
 
     @Override
     protected void createButton(JComponent parent) {
-        button = new JButton("Save");
+        button = new JButton("Remove");
     }
 }

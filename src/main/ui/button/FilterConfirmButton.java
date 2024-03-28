@@ -1,4 +1,7 @@
-package ui;
+package ui.button;
+
+import ui.dialogui.FilterMoodDialogUI;
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

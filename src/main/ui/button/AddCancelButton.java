@@ -1,12 +1,18 @@
-package ui;
+package ui.button;
+
+import ui.dialogui.AddMoodDialogUI;
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoadButton extends Button {
-    public LoadButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
+public class AddCancelButton extends Button {
+    private AddMoodDialogUI addMoodDialogUI;
+
+    public AddCancelButton(MoodTrackerUI moodTrackerUI, JComponent parent, AddMoodDialogUI addMoodDialogUI) {
         super(moodTrackerUI, parent);
+        this.addMoodDialogUI = addMoodDialogUI;
     }
 
     @Override
@@ -15,8 +21,8 @@ public class LoadButton extends Button {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Load")) {
-                    moodTrackerUI.loadMoods();
+                if (s.equals("Cancel")) {
+                    addMoodDialogUI.cancelDialog();
                 }
             }
         });
@@ -24,6 +30,6 @@ public class LoadButton extends Button {
 
     @Override
     protected void createButton(JComponent parent) {
-        button = new JButton("Load");
+        button = new JButton("Cancel");
     }
 }

@@ -1,6 +1,8 @@
-package ui;
+package ui.button;
 
 import model.Mood;
+import ui.dialogui.AddMoodDialogUI;
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

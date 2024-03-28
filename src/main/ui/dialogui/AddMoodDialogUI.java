@@ -1,6 +1,9 @@
-package ui;
+package ui.dialogui;
 
 import model.Mood;
+import ui.MoodTrackerUI;
+import ui.button.AddCancelButton;
+import ui.button.AddDoneButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -152,7 +155,10 @@ public class AddMoodDialogUI {
 
     private void convertJComponentsToMoodConstructors() {
         try {
-            String dateString = yearTextField.getText() + "-" + monthTextField.getText() + "-" + dayTextField.getText();
+            String yearText = getYearText();
+            String monthText = getMonthText();
+            String dayText = getDayText();
+            String dateString = yearText + "-" + monthText + "-" + dayText;
             date = LocalDate.parse(dateString);
             note = noteTextArea.getText();
             moodTag = Objects.requireNonNull(moodTagComboBox.getSelectedItem()).toString();
@@ -160,10 +166,46 @@ public class AddMoodDialogUI {
             moodID = moodTrackerUI.getMoodList().getMoodID();
         } catch (DateTimeException e) {
             System.out.print("Date Exception");
+            String name = "Invalid Date Error";
+            String message = "Date is invalid. Choose another date.";
+            new MessageDialogUI(moodTrackerUI, name, message, false);
         }
     }
 
     public void disposeDialog() {
         dialog.dispose();
+    }
+
+    protected String getYearText() {
+        String yearFromText = yearTextField.getText();
+        if (yearFromText.length() == 1) {
+            String yearText = "000" + yearFromText;
+            return yearText;
+        }
+        if (yearFromText.length() == 2) {
+            String yearText = "00" + yearFromText;
+            return yearText;
+        }
+        if (yearFromText.length() == 3) {
+            String yearText = "0" + yearFromText;
+            return yearText;
+        }
+        return yearFromText;
+    }
+
+    protected String getDayText() {
+        if (dayTextField.getText().length() == 1) {
+            String dayText = "0" + dayTextField.getText();
+            return dayText;
+        }
+        return dayTextField.getText();
+    }
+
+    protected String getMonthText() {
+        if (monthTextField.getText().length() == 1) {
+            String monthText = "0" + monthTextField.getText();
+            return monthText;
+        }
+        return monthTextField.getText();
     }
 }

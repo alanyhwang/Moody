@@ -1,16 +1,17 @@
-package ui;
+package ui.button;
 
-import model.Mood;
+import ui.dialogui.EditMoodDialogUI;
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditConfirmButton extends Button {
+public class EditCancelButton extends Button {
 
     private EditMoodDialogUI editMoodDialogUI;
 
-    public EditConfirmButton(MoodTrackerUI moodTrackerUI, JComponent parent, EditMoodDialogUI editMoodDialogUI) {
+    public EditCancelButton(MoodTrackerUI moodTrackerUI, JComponent parent, EditMoodDialogUI editMoodDialogUI) {
         super(moodTrackerUI, parent);
         this.editMoodDialogUI = editMoodDialogUI;
     }
@@ -21,12 +22,7 @@ public class EditConfirmButton extends Button {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Confirm")) {
-                    try {
-                        editMoodDialogUI.updateMood();
-                    } catch (Exception er) {
-                        System.out.println("Date exception");
-                    }
+                if (s.equals("Cancel")) {
                     editMoodDialogUI.cancelDialog();
                 }
             }
@@ -35,6 +31,6 @@ public class EditConfirmButton extends Button {
 
     @Override
     protected void createButton(JComponent parent) {
-        button = new JButton("Confirm");
+        button = new JButton("Cancel");
     }
 }

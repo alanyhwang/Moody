@@ -1,16 +1,18 @@
-package ui;
+package ui.button;
+
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditCancelButton extends Button {
+// Button adds new mood entry to moodList
+public class AddButton extends Button {
+    JComponent parent;
 
-    private EditMoodDialogUI editMoodDialogUI;
-
-    public EditCancelButton(MoodTrackerUI moodTrackerUI, JComponent parent, EditMoodDialogUI editMoodDialogUI) {
+    public AddButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
-        this.editMoodDialogUI = editMoodDialogUI;
+        this.parent = parent;
     }
 
     @Override
@@ -19,8 +21,8 @@ public class EditCancelButton extends Button {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Cancel")) {
-                    editMoodDialogUI.cancelDialog();
+                if (s.equals("Add")) {
+                    moodTrackerUI.addNewMood();
                 }
             }
         });
@@ -28,6 +30,6 @@ public class EditCancelButton extends Button {
 
     @Override
     protected void createButton(JComponent parent) {
-        button = new JButton("Cancel");
+        button = new JButton("Add");
     }
 }

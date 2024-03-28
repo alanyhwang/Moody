@@ -4,6 +4,11 @@ import model.Mood;
 import model.MoodList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.button.*;
+import ui.dialogui.AddMoodDialogUI;
+import ui.dialogui.EditMoodDialogUI;
+import ui.dialogui.FilterMoodDialogUI;
+import ui.dialogui.MessageDialogUI;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -194,8 +199,14 @@ public class MoodTrackerUI extends JFrame {
         try {
             moodList = jsonReader.read();
             System.out.println("Loaded previous save from " + JSON_LOCATION);
+            String name = "Load Successful";
+            String message = "Mood Entries Loaded!";
+            new MessageDialogUI(this, name, message, true);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_LOCATION);
+            String name = "Load Failed";
+            String message = "Load Failed!";
+            new MessageDialogUI(this, name, message, false);
         }
         resetTableToMoodList();
     }
@@ -208,8 +219,14 @@ public class MoodTrackerUI extends JFrame {
             jsonWriter.write(moodList);
             jsonWriter.close();
             System.out.println("Saved your mood entries to " + JSON_LOCATION);
+            String name = "Save Successful";
+            String message = "Mood Entries Saved!";
+            new MessageDialogUI(this, name, message, true);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_LOCATION);
+            String name = "Save Failed";
+            String message = "Save Failed";
+            new MessageDialogUI(this, name, message, false);
         }
     }
 

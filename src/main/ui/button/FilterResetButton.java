@@ -1,13 +1,17 @@
-package ui;
+package ui.button;
+
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RemoveButton extends Button {
+public class FilterResetButton extends Button {
+    JDialog jdialog;
 
-    public RemoveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
+    public FilterResetButton(MoodTrackerUI moodTrackerUI, JComponent parent, JDialog jdialog) {
         super(moodTrackerUI, parent);
+        this.jdialog = jdialog;
     }
 
     @Override
@@ -16,8 +20,9 @@ public class RemoveButton extends Button {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Remove")) {
-                    moodTrackerUI.removeMood();
+                if (s.equals("Reset")) {
+                    moodTrackerUI.resetTableToMoodList();
+                    jdialog.dispose();
                 }
             }
         });
@@ -25,6 +30,6 @@ public class RemoveButton extends Button {
 
     @Override
     protected void createButton(JComponent parent) {
-        button = new JButton("Remove");
+        button = new JButton("Reset");
     }
 }

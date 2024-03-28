@@ -1,15 +1,14 @@
-package ui;
+package ui.button;
+
+import ui.MoodTrackerUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FilterResetButton extends Button {
-    JDialog jdialog;
-
-    public FilterResetButton(MoodTrackerUI moodTrackerUI, JComponent parent, JDialog jdialog) {
+public class SaveButton extends Button {
+    public SaveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
-        this.jdialog = jdialog;
     }
 
     @Override
@@ -18,9 +17,8 @@ public class FilterResetButton extends Button {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Reset")) {
-                    moodTrackerUI.resetTableToMoodList();
-                    jdialog.dispose();
+                if (s.equals("Save")) {
+                    moodTrackerUI.saveMoods();
                 }
             }
         });
@@ -28,6 +26,6 @@ public class FilterResetButton extends Button {
 
     @Override
     protected void createButton(JComponent parent) {
-        button = new JButton("Reset");
+        button = new JButton("Save");
     }
 }

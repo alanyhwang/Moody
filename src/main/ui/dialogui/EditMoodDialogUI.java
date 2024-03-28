@@ -1,6 +1,9 @@
-package ui;
+package ui.dialogui;
 
 import model.Mood;
+import ui.MoodTrackerUI;
+import ui.button.EditCancelButton;
+import ui.button.EditConfirmButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +64,10 @@ public class EditMoodDialogUI extends AddMoodDialogUI {
     public void updateMood() {
         moodObject.setMood(moodTextField.getText(), moodTagComboBox.getSelectedItem().toString());
         moodObject.setNote(noteTextArea.getText());
-        String dateString = yearTextField.getText() + "-" + monthTextField.getText() + "-" + dayTextField.getText();
+        String yearText = getYearText();
+        String monthText = getMonthText();
+        String dayText = getDayText();
+        String dateString = yearText + "-" + monthText + "-" + dayText;
         LocalDate newDate = LocalDate.parse(dateString);
         moodObject.setDate(newDate);
         moodTrackerUI.resetTableToMoodList();

@@ -1,4 +1,8 @@
-package ui;
+package ui.dialogui;
+
+import ui.MoodTrackerUI;
+import ui.button.FilterConfirmButton;
+import ui.button.FilterResetButton;
 
 import javax.swing.*;
 import java.awt.*;

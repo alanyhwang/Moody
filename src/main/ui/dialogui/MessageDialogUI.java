@@ -1,0 +1,63 @@
+package ui.dialogui;
+
+import ui.MoodTrackerUI;
+import ui.button.DialogOkButton;
+
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+
+public class MessageDialogUI {
+    private MoodTrackerUI moodTrackerUI;
+    private String name;
+    private String message;
+    private Boolean happyCat;
+    private JDialog jdialog;
+
+    public MessageDialogUI(MoodTrackerUI moodTrackerUI, String name, String message, Boolean happyCat) {
+        this.moodTrackerUI = moodTrackerUI;
+        this.name = name;
+        this.message = message;
+        this.happyCat = happyCat;
+        makeJDialog();
+    }
+
+    private void makeJDialog() {
+        jdialog = initializeDialog();
+        JLabel topText = new JLabel(message);
+        ImageIcon centerImage = getImageIcon();
+        JLabel centerImgLabel = new JLabel(centerImage);
+        JPanel botButtonPanel = new JPanel();
+        new DialogOkButton(moodTrackerUI, botButtonPanel, jdialog);
+        jdialog.add(topText, BorderLayout.NORTH);
+        jdialog.add(centerImgLabel, BorderLayout.CENTER);
+        jdialog.add(botButtonPanel, BorderLayout.SOUTH);
+        jdialog.setVisible(true);
+    }
+
+    private ImageIcon getImageIcon() {
+        if (happyCat) {
+            URL imageURL = MessageDialogUI.class.getResource("/happycat.jpg");
+            if (imageURL == null) {
+                throw new RuntimeException("resource failed to load");
+            }
+            ImageIcon happyCat = new ImageIcon(imageURL);
+            return happyCat;
+        } else {
+            URL imageURL = MessageDialogUI.class.getResource("/sadcat.JPG");
+            if (imageURL == null) {
+                throw new RuntimeException("resource failed to load");
+            }
+            ImageIcon sadCat = new ImageIcon(imageURL);
+            return sadCat;
+        }
+    }
+
+    private JDialog initializeDialog() {
+        JDialog d = new JDialog(moodTrackerUI, name, true);
+        d.setLayout(new BorderLayout());
+        d.setMinimumSize(new Dimension(225, 250));
+        d.setLocation(250, 0);
+        return d;
+    }
+}
