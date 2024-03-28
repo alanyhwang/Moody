@@ -13,6 +13,7 @@ import ui.dialogui.MessageDialogUI;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -135,15 +136,32 @@ public class MoodTrackerUI extends JFrame {
             moodTable.addRow(eachMood);
         }
         editableTableMoodList = moodTable;
-        JTable table = new JTable(moodTable) {
+        JTable table = getModifiedJTable(moodTable);
+        editableJTableMoodList = table;
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        return table;
+    }
+
+    // EFFECTS: override JTable methods to disable editing and color each row base on moodTag
+    private JTable getModifiedJTable(DefaultTableModel moodTable) {
+        return new JTable(moodTable) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component c = super.prepareRenderer(renderer, row, column);
+                c.setBackground(getBackground());
+                int modelRow = convertRowIndexToModel(row);
+                int moodID = parseInt(getModel().getValueAt(modelRow, 0).toString());
+                Color moodColor = moodList.findMood(moodID).getMoodColor();
+                c.setBackground(moodColor);
+
+                return c;
+            }
         };
-        editableJTableMoodList = table;
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        return table;
     }
 
 

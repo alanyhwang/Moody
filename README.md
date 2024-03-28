@@ -29,12 +29,12 @@ events can affect their mood in the long run.
 - As a user, I want to be able to save my mood entries from the main menu to file
 - As a user, I want to be able to load my mood entries from the main menu from file
 
- Instructions for Grader
-- Can load pre-saved mood entries by clicking the Load button
+## Instructions for Grader
+- Load pre-saved mood entries by clicking the Load button. Each entry is color coded from greener = more positive to redder = more negative.
 - Click on a row in the table to select and see entry details on the mood entry
 - Click the Add button to add a new mood entry, a new dialog window will open. If user enters an invalid date, another dialog will open and notify user fail to add date. An image of sad cat will appear along with the message. Successful entries will add the new entry at the end of the table.
 - To remove an entry, select a mood from the table and press the Remove button
 - To filter the entry list by their moodTag, press the Filter button, select the desired moodTag and press confirm. To reset, press the filter button and press reset. Entries can be removed with the filtered list.
 - To edit an entry, select the desired row from the table, press the Edit button and edit the entry. Confirm to change the entry. Invalid dates will open an error dialog same as invalid date for adding an entry.
-- To save an entry, press the Save button, a message will appear if save is successful with a happy cat image. If fail, sad cat image will appear.
-- To load an entry, press the Load button, a message will appear if load is successful with a happy cat image. If fail, sad cat image will appear.
+- To save an entry, press the Save button, a message will appear if save is successful with a happy cat image. If failed, sad cat image will appear.
+- To load an entry, press the Load button, a message will appear if load is successful with a happy cat image. If failed, sad cat image will appear.

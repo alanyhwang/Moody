@@ -24,7 +24,7 @@ class MoodTest {
         assertEquals(date1, testMood.getDate());
         assertEquals("Happy", testMood.getMood());
         assertEquals("Positive", testMood.getMoodTag());
-        assertEquals(new Color(0, 204, 0), testMood.getMoodColor());
+        assertEquals(new Color(82, 228, 117), testMood.getMoodColor());
         assertEquals("I ate cake.", testMood.getNote());
         assertEquals(1, testMood.getID());
     }
@@ -56,15 +56,15 @@ class MoodTest {
 
     @Test
     public void testMoodColors() {
-        assertEquals(new Color(0, 204, 0), testMood.getMoodColor());
+        assertEquals(new Color(82, 228, 117), testMood.getMoodColor());
         testMood.setMood("Aight", "Positive Neutral");
-        assertEquals(new Color(102, 255, 102), testMood.getMoodColor());
+        assertEquals(new Color(169, 236, 185), testMood.getMoodColor());
         testMood.setMood("OK", "Neutral");
-        assertEquals(new Color(255, 255, 255), testMood.getMoodColor());
+        assertEquals(new Color(222, 218, 218), testMood.getMoodColor());
         testMood.setMood("down", "Negative Neutral");
-        assertEquals(new Color(255, 102, 102), testMood.getMoodColor());
+        assertEquals(new Color(245, 185, 185), testMood.getMoodColor());
         testMood.setMood("sad", "Negative");
-        assertEquals(new Color(255, 0, 0), testMood.getMoodColor());
+        assertEquals(new Color(239, 144, 148), testMood.getMoodColor());
         testMood.setMood("none", "Nothing");
         assertEquals(new Color(211, 211, 211), testMood.getMoodColor());
     }

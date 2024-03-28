@@ -9,11 +9,11 @@ import java.time.LocalDate;
 // Represents a mood entry, including the date, mood, moodTag and note associated to said entry
 public class Mood implements Writable {
     // constants for colors associated to moodTag
-    private static final Color positiveColor = new Color(0, 204, 0);
-    private static final Color positiveNeutralColor = new Color(102, 255, 102);
-    private static final Color neutralColor = new Color(255, 255, 255);
-    private static final Color negativeNeutralColor = new Color(255, 102, 102);
-    private static final Color negativeColor = new Color(255, 0, 0);
+    private static final Color positiveColor = new Color(82, 228, 117);
+    private static final Color positiveNeutralColor = new Color(169, 236, 185);
+    private static final Color neutralColor = new Color(222, 218, 218);
+    private static final Color negativeNeutralColor = new Color(245, 185, 185);
+    private static final Color negativeColor = new Color(239, 144, 148);
     private static final Color defaultColor = new Color(211, 211, 211);
 
     private final int entryID;
