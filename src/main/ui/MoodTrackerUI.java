@@ -60,33 +60,33 @@ public class MoodTrackerUI extends JFrame {
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         addButtons();
-        addMoodListAndTextArea();
+        addMoodEntriesTableAndNoteTextArea();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
     // MODIFIES: this
     // EFFECTS: add JPanel with JTable for MoodList and JTextArea for notes
-    private void addMoodListAndTextArea() {
+    private void addMoodEntriesTableAndNoteTextArea() {
         JPanel rightArea = new JPanel();
         rightArea.setLayout(new GridLayout(0,1));
         rightArea.setMaximumSize(new Dimension(100, 300));
         //JTextArea
         textArea = setTextArea();
-        JScrollPane textAreaScroll = setScrollPaneForTextArea(textArea);
+        JScrollPane textAreaWithScroll = setScrollPaneForTextArea(textArea);
         //JTable
         JTable table = setMoodListTable();
-        selectionListener(table, textArea);
-        JScrollPane tableScroll = setScrollPaneForTable(table);
+        selectionListener(table);
+        JScrollPane tableWithScroll = setScrollPaneForTable(table);
 
-        rightArea.add(tableScroll);
-        rightArea.add(textAreaScroll);
+        rightArea.add(tableWithScroll);
+        rightArea.add(textAreaWithScroll);
         add(rightArea,BorderLayout.CENTER);
     }
 
-    // MODIFIES: this, textArea
+    // MODIFIES: this
     // EFFECTS: mouse click on a JTable row will set JTextArea's text to the associated mood
-    private void selectionListener(JTable table, JTextArea textArea) {
+    private void selectionListener(JTable table) {
         table.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
             if (table.getSelectedRow() > -1) {
                 textArea.setText("");
