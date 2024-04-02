@@ -5,9 +5,9 @@ import ui.MoodTrackerUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-// Button removes selected mood entry
-public class RemoveButton extends Button {
-    public RemoveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
+public class QuitButton extends Button {
+
+    public QuitButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }
 
@@ -17,8 +17,8 @@ public class RemoveButton extends Button {
     protected void addListener() {
         button.addActionListener((ActionEvent e) -> {
             String s = e.getActionCommand();
-            if (s.equals("Remove")) {
-                moodTrackerUI.removeMood();
+            if (s.equals("Quit")) {
+                moodTrackerUI.quitFrame();
             }
         });
     }
@@ -27,6 +27,6 @@ public class RemoveButton extends Button {
     // MODIFIES: this
     // EFFECTS: set button name
     protected void createButton() {
-        button = new JButton("Remove");
+        button = new JButton("Quit");
     }
 }

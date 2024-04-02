@@ -1,20 +1,21 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Mood;
 import model.MoodList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.button.*;
-import ui.dialogui.AddMoodDialogUI;
-import ui.dialogui.EditMoodDialogUI;
-import ui.dialogui.FilterMoodDialogUI;
-import ui.dialogui.MessageDialogUI;
+import ui.dialogui.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import java.util.ArrayList;
 import static java.lang.Integer.parseInt;
 
 // application's main window frame
-public class MoodTrackerUI extends JFrame {
+public class MoodTrackerUI extends JFrame implements WindowListener {
 
     public static final int WIDTH = 500;
     public static final int HEIGHT = 300;
-    private static final String JSON_LOCATION = "./data/moodlist.json";
+    private static final String JSON_LOCATION = "./data/moodList.json";
     private static final String[] columnNames = {"ID", "Date", "Mood"};
 
     private MoodList moodList;
@@ -35,10 +36,13 @@ public class MoodTrackerUI extends JFrame {
     private JTextArea textArea;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private boolean eventLogOpened;
+    private EventLogUI eventLogUI;
 
     public MoodTrackerUI() {
         super("Mood Tracker");
         initializeTracker();
+        addWindowListener(this);
         initializeGraphics();
     }
 
@@ -48,6 +52,7 @@ public class MoodTrackerUI extends JFrame {
         moodList = new MoodList();
         jsonWriter = new JsonWriter(JSON_LOCATION);
         jsonReader = new JsonReader(JSON_LOCATION);
+        eventLogOpened = false;
     }
 
     public MoodList getMoodList() {
@@ -179,6 +184,8 @@ public class MoodTrackerUI extends JFrame {
         new EditButton(this, buttonArea);
         new SaveButton(this, buttonArea);
         new LoadButton(this, buttonArea);
+        new EventsButton(this, buttonArea);
+        new QuitButton(this, buttonArea);
     }
 
     // EFFECTS: create a new JDialog for adding a new mood
@@ -195,12 +202,14 @@ public class MoodTrackerUI extends JFrame {
             editableTableMoodList.removeRow(rowToDelete);
             moodList.deleteMood(removeMoodID);
         }
+        updateEventLogText();
     }
 
     // EFFECTS: creates a new JDialog for selecting a filter
     public void filterMoods() {
         FilterMoodDialogUI filterMoodDialogUI = new FilterMoodDialogUI(this);
         filterMoodDialogUI.createDialogFilter();
+        updateEventLogText();
     }
 
     // EFFECTS: creates a new JDialog for editing a selected mood
@@ -218,17 +227,16 @@ public class MoodTrackerUI extends JFrame {
     public void loadMoods() {
         try {
             moodList = jsonReader.read();
-            System.out.println("Loaded previous save from " + JSON_LOCATION);
             String name = "Load Successful";
             String message = "Mood Entries Loaded!";
             new MessageDialogUI(this, name, message, true);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_LOCATION);
             String name = "Load Failed";
             String message = "Load Failed!";
             new MessageDialogUI(this, name, message, false);
         }
         resetTableToMoodList();
+        updateEventLogText();
     }
 
     // MODIFIES: this
@@ -238,23 +246,23 @@ public class MoodTrackerUI extends JFrame {
             jsonWriter.open();
             jsonWriter.write(moodList);
             jsonWriter.close();
-            System.out.println("Saved your mood entries to " + JSON_LOCATION);
             String name = "Save Successful";
             String message = "Mood Entries Saved!";
             new MessageDialogUI(this, name, message, true);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_LOCATION);
             String name = "Save Failed";
             String message = "Save Failed";
             new MessageDialogUI(this, name, message, false);
         }
+        updateEventLogText();
     }
 
     // MODIFIES: this
     // EFFECTS: add mood to moodList, reflect change on JTable UI
     public void addNewMoodToMoodList(Mood m) {
-        moodList.addMood(m);
+        moodList.addMood(m, false);
         updateJTableUIAddMood(m);
+        updateEventLogText();
     }
 
     // MODIFIES: this
@@ -273,6 +281,7 @@ public class MoodTrackerUI extends JFrame {
             String[] eachMood = {String.valueOf(m.getID()), String.valueOf(m.getDate()), m.getMood()};
             editableTableMoodList.addRow(eachMood);
         }
+        updateEventLogText();
     }
 
     // MODIFIES: this
@@ -284,5 +293,72 @@ public class MoodTrackerUI extends JFrame {
             editableTableMoodList.addRow(eachMood);
         }
         textArea.setText("");
+    }
+
+    // EFFECTS: close MoodTracker
+    public void quitFrame() {
+        setVisible(false);
+        dispose();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: make new dialog to display event logs
+    public void getEventLog() {
+        if (!eventLogOpened) {
+            eventLogUI = new EventLogUI(this);
+            eventLogOpened = true;
+        }
+    }
+
+    // EFFECTS: updates event logs in dialog
+    public void updateEventLogText() {
+        if (eventLogOpened) {
+            eventLogUI.updateEventLogTextBox();
+        }
+    }
+
+    public void setEventLogOpened(boolean b) {
+        this.eventLogOpened = b;
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    // EFFECTS: print all event logs before window closing
+    public void windowClosing(WindowEvent e) {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+        }
+    }
+
+    @Override
+    // EFFECTS: print all event logs when .dispose() called
+    public void windowClosed(WindowEvent e) {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+        }
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

@@ -26,7 +26,7 @@ public class MessageDialogUI {
     // MODIFIES: this
     // EFFECTS: creates JDialog to display message
     private void makeJDialog() {
-        jdialog = initializeDialog();
+        initializeDialog();
         JLabel topText = new JLabel(message);
         ImageIcon centerImage = getImageIcon();
         JLabel centerImgLabel = new JLabel(centerImage);
@@ -52,12 +52,12 @@ public class MessageDialogUI {
         return new ImageIcon(imageURL);
     }
 
+    // MODIFIES: this
     // EFFECTS: sets parameters for JDialog
-    private JDialog initializeDialog() {
-        JDialog d = new JDialog(moodTrackerUI, name, true);
-        d.setLayout(new BorderLayout());
-        d.setMinimumSize(new Dimension(225, 250));
-        d.setLocation(250, 0);
-        return d;
+    private void initializeDialog() {
+        jdialog = new JDialog(moodTrackerUI, name, true);
+        jdialog.setLayout(new BorderLayout());
+        jdialog.setMinimumSize(new Dimension(225, 250));
+        jdialog.setLocation(250, 0);
     }
 }

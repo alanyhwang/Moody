@@ -31,7 +31,7 @@ public class EditCancelButton extends Button {
     @Override
     // MODIFIES: this
     // EFFECTS: set button name
-    protected void createButton(JComponent parent) {
+    protected void createButton() {
         button = new JButton("Cancel");
     }
 }

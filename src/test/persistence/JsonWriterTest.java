@@ -50,12 +50,12 @@ public class JsonWriterTest extends JsonTest {
     void testWriterMoodListAllTag() {
         try {
             MoodList ml = new MoodList();
-            ml.addMood(new Mood(1, LocalDate.parse("1991-01-01"), "Happy", "Positive", "VICTORY ROYALE YAY"));
-            ml.addMood(new Mood(2, LocalDate.parse("1992-02-02"), "Not Bad", "Positive Neutral", "playing games"));
-            ml.addMood(new Mood(3, LocalDate.parse("1993-03-03"), "OK", "Neutral", "sleeping in bed zzz"));
-            ml.addMood(new Mood(4, LocalDate.parse("1994-04-04"), "Sad", "Negative Neutral", "Imma go cry now"));
-            ml.addMood(new Mood(5, LocalDate.parse("1995-05-05"), "Angry", "Negative", "IM SUPER ANGRY."));
-            ml.addMood(new Mood(6, LocalDate.parse("1996-06-06"), "huh", "default", "fake note"));
+            ml.addMood(new Mood(1, LocalDate.parse("1991-01-01"), "Happy", "Positive", "VICTORY ROYALE YAY"), false);
+            ml.addMood(new Mood(2, LocalDate.parse("1992-02-02"), "Not Bad", "Positive Neutral", "playing games"), false);
+            ml.addMood(new Mood(3, LocalDate.parse("1993-03-03"), "OK", "Neutral", "sleeping in bed zzz"), false);
+            ml.addMood(new Mood(4, LocalDate.parse("1994-04-04"), "Sad", "Negative Neutral", "Imma go cry now"), false);
+            ml.addMood(new Mood(5, LocalDate.parse("1995-05-05"), "Angry", "Negative", "IM SUPER ANGRY."), false);
+            ml.addMood(new Mood(6, LocalDate.parse("1996-06-06"), "huh", "default", "fake note"), false);
 
             JsonWriter writer = new JsonWriter("./data/testWriterMoodListAllTag.json");
             writer.open();

@@ -35,11 +35,11 @@ class MoodListTest {
         mood5 = new Mood (5, date5, "Sad", "Negative", "My dog died!");
         moodList = new MoodList();
         assertEquals(1, moodList.getMoodID());
-        moodList.addMood(mood1);
-        moodList.addMood(mood2);
-        moodList.addMood(mood3);
-        moodList.addMood(mood4);
-        moodList.addMood(mood5);
+        moodList.addMood(mood1, false);
+        moodList.addMood(mood2, false);
+        moodList.addMood(mood3, false);
+        moodList.addMood(mood4, false);
+        moodList.addMood(mood5, false);
     }
 
     @Test
@@ -50,9 +50,14 @@ class MoodListTest {
 
     @Test
     void testAddMood() {
-        moodList.addMood(mood1);
+        moodList.addMood(mood1, false);
         assertEquals(7, moodList.getMoodID());
         assertEquals(Arrays.asList(mood1, mood2, mood3, mood4, mood5, mood1), moodList.getMoodList());
+        moodList.addMood(mood2, true);
+        String expectedEventLog = EventLog.getInstance().iterator().next().getDate().toString() +
+                "\nMood added! \n" +
+                "ID: 1 at Date: 2024-01-01\n\n";
+        assertEquals(expectedEventLog, EventLog.getInstance().iterator().next().toString());
     }
 
     @Test
@@ -78,11 +83,11 @@ class MoodListTest {
         Mood mood8 = new Mood (8, date1, "Aight", "Neutral", "Sleeping.");
         Mood mood9 = new Mood (9, date1, "Slight Sad", "Negative Neutral", "Tripped.");
         Mood mood10 = new Mood (10, date1, "Omega Sad", "Negative", "My cat died!");
-        moodList.addMood(mood6);
-        moodList.addMood(mood7);
-        moodList.addMood(mood8);
-        moodList.addMood(mood9);
-        moodList.addMood(mood10);
+        moodList.addMood(mood6, false);
+        moodList.addMood(mood7, false);
+        moodList.addMood(mood8, false);
+        moodList.addMood(mood9, false);
+        moodList.addMood(mood10, false);
         assertEquals(Arrays.asList(mood1, mood6), moodList.filterMoodByTag("Positive"));
         assertEquals(Arrays.asList(mood2, mood7), moodList.filterMoodByTag("Positive Neutral"));
         assertEquals(Arrays.asList(mood3, mood8), moodList.filterMoodByTag("Neutral"));

@@ -31,9 +31,13 @@ public class MoodList implements Writable {
 
     //MODIFIES: this
     //EFFECTS: add a new mood to moodList, increment moodID by +1
-    public void addMood(Mood mood) {
-        moodList.add(mood);
+    public void addMood(Mood m, boolean fromLoading) {
+        moodList.add(m);
         this.moodID += 1;
+        if (!fromLoading) {
+            EventLog.getInstance().logEvent(new Event(
+                    "Mood added to entries list! \nID: " + m.getID() + " on Date: " + m.getDate().toString() + "\n\n"));
+        }
     }
 
     //EFFECTS: return the mood in moodList given moodID, else return null
@@ -50,7 +54,11 @@ public class MoodList implements Writable {
     //MODIFIES: this
     //EFFECTS: delete the mood from moodList given moodID, else return null
     public void deleteMood(int moodID) {
-        moodList.remove(findMood(moodID));
+        Mood m = findMood(moodID);
+        String moodDate = m.getDate().toString();
+        moodList.remove(m);
+        EventLog.getInstance().logEvent(new Event(
+                "Mood deleted from entries list! \nID: " + moodID + " on Date: " + moodDate + "\n\n"));
     }
 
     //EFFECTS: produce a list of entries with given moodTag
@@ -61,6 +69,7 @@ public class MoodList implements Writable {
                 moodListWithTag.add(m);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Entries filtered by: " + moodTag + "\n\n"));
         return moodListWithTag;
     }
 
@@ -79,7 +88,6 @@ public class MoodList implements Writable {
         for (Mood m : moodList) {
             jsonArray.put(m.toJson());
         }
-
         return jsonArray;
     }
 }

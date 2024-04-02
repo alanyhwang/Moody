@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 // MoodTracker Application
 public class MoodTrackerConsole {
-    private static final String JSON_LOCATION = "./data/moodlist.json";
+    private static final String JSON_LOCATION = "./data/moodList.json";
     private Scanner input;
     private MoodList moodList;
     private JsonWriter jsonWriter;
@@ -118,7 +118,7 @@ public class MoodTrackerConsole {
         System.out.println("Please enter any notes for this entry:");
         String note = input.next();
         Mood moodObject = new Mood(moodList.getMoodID(), date, mood, moodTag, note);
-        moodList.addMood(moodObject);
+        moodList.addMood(moodObject, false);
         System.out.println("New entry added!");
         enterToContinue();
     }
@@ -324,6 +324,7 @@ public class MoodTrackerConsole {
         return LocalDate.of(year, month, day);
     }
 
+    // MODIFIES: this
     // EFFECTS: press enter to continue program
     private void enterToContinue() {
         System.out.println("\nPress Enter to continue");

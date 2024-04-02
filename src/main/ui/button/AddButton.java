@@ -7,11 +7,9 @@ import java.awt.event.ActionEvent;
 
 // Button adds new mood entry to moodList
 public class AddButton extends Button {
-    JComponent parent;
 
     public AddButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
-        this.parent = parent;
     }
 
     @Override
@@ -29,7 +27,7 @@ public class AddButton extends Button {
     @Override
     // MODIFIES: this
     // EFFECTS: set button name
-    protected void createButton(JComponent parent) {
+    protected void createButton() {
         button = new JButton("Add");
     }
 }

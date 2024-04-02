@@ -5,13 +5,9 @@ import ui.MoodTrackerUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-// Closes dialog
-public class DialogOkButton extends Button {
-    protected JDialog jdialog;
-
-    public DialogOkButton(MoodTrackerUI moodTrackerUI, JComponent parent, JDialog jdialog) {
-        super(moodTrackerUI, parent);
-        this.jdialog = jdialog;
+public class EventDialogOkButton extends DialogOkButton {
+    public EventDialogOkButton(MoodTrackerUI moodTrackerUI, JComponent parent, JDialog jdialog) {
+        super(moodTrackerUI, parent, jdialog);
     }
 
     @Override
@@ -21,15 +17,9 @@ public class DialogOkButton extends Button {
         button.addActionListener((ActionEvent e) -> {
             String s = e.getActionCommand();
             if (s.equals("OK")) {
+                moodTrackerUI.setEventLogOpened(false);
                 jdialog.dispose();
             }
         });
-    }
-
-    @Override
-    // MODIFIES: this
-    // EFFECTS: set button name
-    protected void createButton() {
-        button = new JButton("OK");
     }
 }

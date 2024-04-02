@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.MoodList;
 import org.json.JSONObject;
 
@@ -30,6 +32,7 @@ public class JsonWriter {
     public void write(MoodList ml) {
         JSONObject json = ml.toJson();
         saveToFile(json.toString(INDENT));
+        EventLog.getInstance().logEvent(new Event("Entries saved to moodList.json.\n\n"));
     }
 
     // MODIFIES: this

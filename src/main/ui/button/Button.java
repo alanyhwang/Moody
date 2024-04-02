@@ -13,7 +13,7 @@ public abstract class Button {
 
     public Button(MoodTrackerUI moodTrackerUI, JComponent parent) {
         this.moodTrackerUI = moodTrackerUI;
-        createButton(parent);
+        createButton();
         addToParent(parent);
         addListener();
     }
@@ -22,7 +22,7 @@ public abstract class Button {
     protected abstract void addListener();
 
     // EFFECTS: create and set button name
-    protected abstract void createButton(JComponent parent);
+    protected abstract void createButton();
 
     // MODIFIES: parent
     // EFFECTS: adds button to the parent component

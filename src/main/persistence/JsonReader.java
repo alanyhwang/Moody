@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.Mood;
 import model.MoodList;
 import org.json.JSONArray;
@@ -27,6 +29,7 @@ public class JsonReader {
     public MoodList read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Entries loaded from moodList.json.\n\n"));
         return parseMoodList(jsonObject);
     }
 
@@ -69,6 +72,6 @@ public class JsonReader {
         String moodTag = jsonObject.getString("moodTag");
         String note = jsonObject.getString("note");
         Mood moodObject = new Mood(entryID, date, mood, moodTag, note);
-        ml.addMood(moodObject);
+        ml.addMood(moodObject, true);
     }
 }
