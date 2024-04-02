@@ -1,7 +1,5 @@
 package model;
 
-import model.Event;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,7 +12,7 @@ public class EventLog implements Iterable<Event> {
 
     // Prevent external construction.
     private EventLog() {
-        events = new ArrayList<Event>();
+        events = new ArrayList<>();
     }
 
     public static EventLog getInstance() {

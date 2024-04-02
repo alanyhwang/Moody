@@ -38,3 +38,18 @@ events can affect their mood in the long run.
 - To edit an entry, select the desired row from the table, press the Edit button and edit the entry. Confirm to change the entry. Invalid dates will open an error dialog same as invalid date for adding an entry.
 - To save an entry, press the Save button, a message will appear if save is successful with a happy cat image. If failed, sad cat image will appear.
 - To load an entry, press the Load button, a message will appear if load is successful with a happy cat image. If failed, sad cat image will appear.
+
+## Phase 4: Task 2
+Example EventLog:
+- Entries loaded from moodList.json.
+- 
+- Tue Apr 02 15:06:45 PDT 2024
+- Mood added to entries list!
+- ID: 17 on Date: 0001-01-01
+- 
+- Tue Apr 02 15:06:48 PDT 2024
+- Mood deleted from entries list!
+- ID: 3 on Date: 1888-02-02
+- 
+- Tue Apr 02 15:06:50 PDT 2024
+- Entries filtered by tag: Neutral

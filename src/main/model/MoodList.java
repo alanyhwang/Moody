@@ -69,7 +69,7 @@ public class MoodList implements Writable {
                 moodListWithTag.add(m);
             }
         }
-        EventLog.getInstance().logEvent(new Event("Entries filtered by: " + moodTag + "\n\n"));
+        EventLog.getInstance().logEvent(new Event("Entries filtered by tag: " + moodTag + "\n\n"));
         return moodListWithTag;
     }
 
