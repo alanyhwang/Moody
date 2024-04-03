@@ -41,22 +41,28 @@ events can affect their mood in the long run.
 
 ## Phase 4: Task 2
 Example EventLog:
+- Wed Apr 03 10:15:09 PDT 2024
 - Entries loaded from moodList.json.
-- 
-- Tue Apr 02 15:06:45 PDT 2024
+-
+- Wed Apr 03 10:15:36 PDT 2024
 - Mood added to entries list!
-- ID: 17 on Date: 0001-01-01
+- ID: 18 on Date: 1992-01-14
 - 
-- Tue Apr 02 15:06:48 PDT 2024
-- Mood deleted from entries list!
-- ID: 3 on Date: 1888-02-02
-- 
-- Tue Apr 02 15:06:50 PDT 2024
+- Wed Apr 03 10:15:56 PDT 2024 
 - Entries filtered by tag: Neutral
+- 
+- Wed Apr 03 10:16:47 PDT 2024 
+- Mood deleted from entries list!
+- ID: 16 on Date: 0055-05-05 
+- 
+- Wed Apr 03 10:16:49 PDT 2024 
+- Entries saved to moodList.json.
 
 
 ## Phase 4: Task 3
 Ideas for refactoring:
 - all the classes in dialogui package can extend JDialog, making them JDialogs, so we don't have to create new JDialogs within those classes. Also, more consistent with naming.
 - buttons appears in same windows can be grouped to the same package? Helps when searching for the right button class
+- buttons can probably extend JButtons, and main Button abstract class can be more general, taking only JComponent as parameter, and have other button classes that extend it add necessary parameters of their own. Currently, Button class take in MoodTrackerUI which not all child buttons need.
 - make moodTag values enums in mood class ("Positive", "Positive Neutral", "Neutral", "Negative Neutral", "Negative")
+- have a editMood method in MoodList class that passes in moodID of edited mood and new parameters; this way we can log when moods are being edited in the event log and we're not editing moods in the UI class

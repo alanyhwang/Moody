@@ -74,6 +74,7 @@ public class MoodList implements Writable {
     }
 
     @Override
+    // EFFECTS: converts MoodList to JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("mood list", moodListToJson());

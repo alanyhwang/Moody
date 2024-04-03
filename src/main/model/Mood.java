@@ -136,6 +136,7 @@ public class Mood implements Writable {
     }
 
     @Override
+    // EFFECTS: convert mood to JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("entryID", entryID);
