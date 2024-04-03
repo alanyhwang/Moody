@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 // Button prompts filter of moodList
 public class FilterButton extends Button {
+
     public FilterButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }

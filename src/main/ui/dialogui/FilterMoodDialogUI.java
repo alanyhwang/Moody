@@ -46,7 +46,7 @@ public class FilterMoodDialogUI {
         JPanel p2 = new JPanel();
         p2.setLayout(new FlowLayout(FlowLayout.CENTER));
         new FilterConfirmButton(moodTrackerUI, p2,this);
-        new FilterResetButton(moodTrackerUI, p2, dialog);
+        new FilterResetButton(moodTrackerUI, p2, this);
         p2.setVisible(true);
         dialog.add(p2);
     }

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 // Button prompt edits to selected mood
 public class EditButton extends Button {
+
     public EditButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }

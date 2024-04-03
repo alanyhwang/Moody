@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 // Button removes selected mood entry
 public class RemoveButton extends Button {
+
     public RemoveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }

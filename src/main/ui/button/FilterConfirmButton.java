@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 
 // Button confirms filtering
 public class FilterConfirmButton extends Button {
+
     private FilterMoodDialogUI filterMoodDialogUI;
 
     public FilterConfirmButton(MoodTrackerUI mtUI, JComponent parent, FilterMoodDialogUI filterMoodDialogUI) {

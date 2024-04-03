@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class EventsButton extends Button {
+
     public EventsButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }

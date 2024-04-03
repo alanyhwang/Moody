@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 // Button saves current moods in moodList to JSON
 public class SaveButton extends Button {
+
     public SaveButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }

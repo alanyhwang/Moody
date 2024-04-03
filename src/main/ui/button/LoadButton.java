@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 
 // Button prompts loading of Mood and MoodList from JSON
 public class LoadButton extends Button {
+
     public LoadButton(MoodTrackerUI moodTrackerUI, JComponent parent) {
         super(moodTrackerUI, parent);
     }

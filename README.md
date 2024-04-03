@@ -53,3 +53,10 @@ Example EventLog:
 - 
 - Tue Apr 02 15:06:50 PDT 2024
 - Entries filtered by tag: Neutral
+
+
+## Phase 4: Task 3
+Ideas for refactoring:
+- all the classes in dialogui package can extend JDialog, making them JDialogs, so we don't have to create new JDialogs within those classes. Also, more consistent with naming.
+- buttons appears in same windows can be grouped to the same package? Helps when searching for the right button class
+- make moodTag values enums in mood class ("Positive", "Positive Neutral", "Neutral", "Negative Neutral", "Negative")

@@ -3,33 +3,36 @@ package ui.dialogui;
 import model.Event;
 import model.EventLog;
 import ui.MoodTrackerUI;
-import ui.button.EventDialogOkButton;
+import ui.button.DialogOkButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 // creates JDialog to list all the events
-public class EventLogUI {
+public class EventLogUI extends JDialog implements WindowListener {
     private MoodTrackerUI moodTrackerUI;
-    private JDialog jdialog;
     private JTextArea eventLogArea;
 
     public EventLogUI(MoodTrackerUI moodTrackerUI) {
+        super(moodTrackerUI, "Event Log", false);
         this.moodTrackerUI = moodTrackerUI;
+        addWindowListener(this);
         makeJDialog();
     }
 
     // MODIFIES: this
-    // EFFECTS: create and initialize new JDialog window
+    // EFFECTS: initialize new JDialog window
     private void makeJDialog() {
         initializeDialog();
         initializeTextBoxForEventLogs();
         JScrollPane eventLogAreaWithScroll = new JScrollPane(eventLogArea);
         JPanel botButtonPanel = new JPanel();
-        new EventDialogOkButton(moodTrackerUI, botButtonPanel, jdialog);
-        jdialog.add(eventLogAreaWithScroll, BorderLayout.CENTER);
-        jdialog.add(botButtonPanel, BorderLayout.SOUTH);
-        jdialog.setVisible(true);
+        new DialogOkButton(moodTrackerUI, botButtonPanel, this);
+        add(eventLogAreaWithScroll, BorderLayout.CENTER);
+        add(botButtonPanel, BorderLayout.SOUTH);
+        setVisible(true);
     }
 
     // MODIFIES: this
@@ -54,9 +57,43 @@ public class EventLogUI {
     // MODIFIES: this
     // EFFECTS: create and initialize new JDialog
     private void initializeDialog() {
-        jdialog = new JDialog(moodTrackerUI, "Event Log", false);
-        jdialog.setLayout(new BorderLayout());
-        jdialog.setMinimumSize(new Dimension(350, 300));
-        jdialog.setLocation(525, 0);
+        setLayout(new BorderLayout());
+        setMinimumSize(new Dimension(350, 300));
+        setLocation(525, 0);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        moodTrackerUI.setEventLogOpened(false);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        moodTrackerUI.setEventLogOpened(false);
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 
 // Button cancels effects of add button
 public class AddCancelButton extends Button {
+
     private AddMoodDialogUI addMoodDialogUI;
 
     public AddCancelButton(MoodTrackerUI moodTrackerUI, JComponent parent, AddMoodDialogUI addMoodDialogUI) {

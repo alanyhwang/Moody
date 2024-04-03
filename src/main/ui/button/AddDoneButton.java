@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 
 // Button finishes effects of add button
 public class AddDoneButton extends Button {
+
     private AddMoodDialogUI addMoodDialogUI;
 
     public AddDoneButton(MoodTrackerUI moodTrackerUI, JComponent parent, AddMoodDialogUI addMoodDialogUI) {

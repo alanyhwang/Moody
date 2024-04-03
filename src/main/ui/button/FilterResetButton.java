@@ -1,17 +1,19 @@
 package ui.button;
 
 import ui.MoodTrackerUI;
+import ui.dialogui.FilterMoodDialogUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 // Button resets displayed moodList
 public class FilterResetButton extends Button {
-    JDialog jdialog;
 
-    public FilterResetButton(MoodTrackerUI moodTrackerUI, JComponent parent, JDialog jdialog) {
+    FilterMoodDialogUI filterMoodDialogUI;
+
+    public FilterResetButton(MoodTrackerUI moodTrackerUI, JComponent parent, FilterMoodDialogUI filterMoodDialogUI) {
         super(moodTrackerUI, parent);
-        this.jdialog = jdialog;
+        this.filterMoodDialogUI = filterMoodDialogUI;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class FilterResetButton extends Button {
             String s = e.getActionCommand();
             if (s.equals("Reset")) {
                 moodTrackerUI.resetTableToMoodList();
-                jdialog.dispose();
+                filterMoodDialogUI.disposeDialog();
             }
         });
     }
