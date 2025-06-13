@@ -1,4 +1,7 @@
-# Mood Tracker
+# Moodiary
+
+![image](https://github.com/user-attachments/assets/92e6ee97-2a33-405f-8de7-895634e08336)
+
 
 ## Description
 
