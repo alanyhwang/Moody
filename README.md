@@ -29,7 +29,7 @@ events can affect their mood in the long run.
 - As a user, I want to be able to save my mood entries from the main menu to file
 - As a user, I want to be able to load my mood entries from the main menu from file
 
-## Instructions for Grader
+## Instructions
 - Load pre-saved mood entries by clicking the Load button. Each entry is color coded from greener = more positive to redder = more negative.
 - Click on a row in the table to select and see entry details on the mood entry
 - Click the Add button to add a new mood entry, a new dialog window will open. If user enters an invalid date, another dialog will open and notify user fail to add date. An image of sad cat will appear along with the message. Successful entries will add the new entry at the end of the table.
