@@ -1,7 +1,7 @@
 # Moodiary
 
-![image](https://github.com/user-attachments/assets/92e6ee97-2a33-405f-8de7-895634e08336)
-
+[![image](https://github.com/user-attachments/assets/92e6ee97-2a33-405f-8de7-895634e08336)](https://youtu.be/7JoWdo9rpSw "Moodiary demo - Click to Watch!")
+Click image to watch demo!
 
 ## Description
 
